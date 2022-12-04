@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 2px;
+
+}
+
+.cardContainer {
+    width: 300px;
+}
+
+.enc_data {
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.curdBtn {
+    float: right;
+}
+
+.completed {
+    border: 2px solid green;
+}
+
+.notCompleted {
+    border: 2px solid red;
+}
+
+.usersContainer {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+input {
+    float: right;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    margin: 2px auto;
+
+}
