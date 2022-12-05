@@ -1,12 +1,31 @@
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { addData, URI_POSTS } from '../helpers/utilities';
+import Style from '../Todos&Posts/MergeTodosPosts.module.css'
 
-import {  } from '../helpers/utilities';
+const NewPost = (props) => {
 
-const NewPost = () => {
+    const [data, setData] = useState({
+        id:uuidv4(),
+        userId:props.currentUserId
+    });
+
+    const handleInputChange = (e)=>{
+
+        const {name:n,value:v}= e.target;
+        setData({...data,[n]:v});
+    }
+
+    const handleSubmit =async (e)=>{
+        e.preventDefault();
+        await addData(URI_POSTS,data);
+        props.cb(prev=>[...prev,data]);
+       
+    }
     
-    const [data, setData] = useState({});
+
     
-    return <div className={Style.cardNewTask}>
+    return <div className={Style.cardAddNew} onClick={()=> props.setShowForm(false)}>
                 <div>
                 New Post- User {props.currentUserId}
                 <form onSubmit={handleSubmit} className={Style.form} >
@@ -15,7 +34,7 @@ const NewPost = () => {
                 </label><br/>
                 <label>
                 Body:
-                <textarea maxLength={300} placeholder="....">
+                <textarea maxLength={300} placeholder="...." name="body" onChange={e=>handleInputChange(e)}>
                 </textarea>
                 </label> 
                 <br/>

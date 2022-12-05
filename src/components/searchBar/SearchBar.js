@@ -6,10 +6,10 @@ const SearchBar = (props) => {
         props.setQuery(e.target.value);
     }
 
-    return <div className={Style.container}>
-        <input type="search"   onChange={handleQuery}/>
-        <button>Add</button>
-    </div>
+    return <div className={Style.container} >
+             <input type="search"   onChange={handleQuery}/>
+             <button onClick={()=>props.cb(true)}>Add</button>
+           </div>
 }
  
 export default SearchBar;
