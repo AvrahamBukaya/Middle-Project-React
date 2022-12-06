@@ -20,13 +20,14 @@ const NewPost = (props) => {
         e.preventDefault();
         await addData(URI_POSTS,data);
         props.cb(prev=>[...prev,data]);
+        props.setShowForm(false);
        
     }
     
 
     
-    return <div className={Style.cardAddNew} onClick={()=> props.setShowForm(false)}>
-                <div>
+    return <div className={Style.cardAddNew} onClick={()=> {props.setShowForm(false)}}>
+                <div onClick={e=>e.stopPropagation()}>
                 New Post- User {props.currentUserId}
                 <form onSubmit={handleSubmit} className={Style.form} >
                 <label>

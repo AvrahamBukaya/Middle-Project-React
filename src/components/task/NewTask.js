@@ -29,8 +29,8 @@ const NewTask = (props) => {
     }
 
    
-    return <div className={Style.cardAddNew} onClick={()=>props.setShowForm(false)}>
-                <div>
+    return <div className={Style.cardAddNew} onClick={(e)=>{props.setShowForm(false)}}>
+                <div onClick={(e)=>e.stopPropagation()}>
                 New Todo- User {props.currentUserId}
                 <form onSubmit={handleSubmit} className={Style.form} >
                 <label>

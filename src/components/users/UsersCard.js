@@ -1,5 +1,6 @@
 import { URI_TODOS,URI_USERS, URI_POSTS,getAll } from '../helpers/utilities'
 import { useState, useEffect, useMemo} from 'react';
+import { useFetch } from '../../hooks/useFetch'
 import User from './User';
 import SearchBar from '../searchBar/SearchBar'
 import Style from './Layout.module.css'
@@ -8,9 +9,7 @@ import AddNewUser from './AddUser';
 
 const UsersCard = () => {
 
-    const [users, setUsers] = useState([]);
-    const [todos, setTodos] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [users, setUsers,todos,setTodos,posts, setPosts ] =useFetch();
     const [currentUserId, setCurrentUserId] = useState(0);
     const [query, setQuery] = useState("");
     const[showAddUser,setShowAddUser] = useState(false);
@@ -23,16 +22,16 @@ const UsersCard = () => {
     },[users,query]);
 
 
-    useEffect(()=>{
-        getAll(URI_USERS)
-        .then(data=>setUsers(data));
-        getAll(URI_TODOS)
-        .then(data=> {
-            setTodos(data)})
-        getAll(URI_POSTS)
-        .then(data=> setPosts(data));
+    // useEffect(()=>{
+    //     getAll(URI_USERS)
+    //     .then(data=>setUsers(data));
+    //     getAll(URI_TODOS)
+    //     .then(data=> {
+    //         setTodos(data)})
+    //     getAll(URI_POSTS)
+    //     .then(data=> setPosts(data));
 
-    },[]);
+    // },[]);
 
 
     return <div className={Style.mainContainer}> 

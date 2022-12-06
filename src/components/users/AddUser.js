@@ -7,6 +7,8 @@ const AddNewUser = ({cb,setShowAddUser}) => {
    
     const[data,setData] = useState({
         id:uuidv4(),
+        name:"",
+        Email:""
     });
 
     const handleInputChanges = (e)=>{
@@ -18,16 +20,15 @@ const AddNewUser = ({cb,setShowAddUser}) => {
         e.preventDefault();
         await addData(URI_USERS,data);
         cb(prev=>[...prev,data]);
- 
-
+        setShowAddUser(false);
     }
     
 
-    return <div className={Style.AddNewUser} onSubmit={handleSubmit}>
-             <form className={Style.form}>
+    return <div className={Style.AddNewUser} onClick={()=>setShowAddUser(false)}>
+             <form className={Style.form} onSubmit={handleSubmit}  onClick={e=>e.stopPropagation()}>
                {/* User id: <input type="text" value={data.id} disabled   /> <br/> */}
-               Name: <input type="text" value={data.name} name="name" onChange={(e)=>handleInputChanges(e)} /> <br/>
-               Email: <input type="email" value={data.email} name="email" onChange={(e)=>handleInputChanges(e)}/> <br/>
+               Name: <input type="text"  required value={data.name} name="name" onChange={(e)=>handleInputChanges(e)} /> <br/>
+               Email: <input type="email" required value={data.email} name="email" onChange={(e)=>handleInputChanges(e)}/> <br/>
                <button type="submit">Add</button>
              </form> 
            </div>
