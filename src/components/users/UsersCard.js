@@ -4,6 +4,7 @@ import User from './User';
 import SearchBar from '../searchBar/SearchBar'
 import Style from './Layout.module.css'
 import MergeTodosPosts from '../Todos&Posts/MergeTodosPosts'
+import AddNewUser from './AddUser';
 
 const UsersCard = () => {
 
@@ -12,7 +13,7 @@ const UsersCard = () => {
     const [posts, setPosts] = useState([]);
     const [currentUserId, setCurrentUserId] = useState(0);
     const [query, setQuery] = useState("");
-    const[showForm,setShowForm] = useState(false);
+    const[showAddUser,setShowAddUser] = useState(false);
 
 
 
@@ -36,10 +37,16 @@ const UsersCard = () => {
 
     return <div className={Style.mainContainer}> 
             <div className={Style.usersContainer}>
-              <SearchBar setQuery={setQuery}></SearchBar>
+              <SearchBar setQuery={setQuery} cb={setShowAddUser}></SearchBar>
               {filteredUsers.map((u,i) => <User key={u.id} index={i} data={u} cb={setUsers}  setCurrentUserId={setCurrentUserId} todos={todos.filter(t => t.userId === u.id)}/>)}
             </div>
-            {Boolean(currentUserId)&& <MergeTodosPosts posts={posts} setPosts={setPosts} todos={todos} setTodos={setTodos} showForm={showForm} setShowForm={setShowForm} currentUserId={currentUserId}/>}
+            <div>
+               {Boolean(currentUserId)&& <MergeTodosPosts posts={posts} setPosts={setPosts} todos={todos} setTodos={setTodos}  currentUserId={currentUserId}/>}
+            </div>
+            <div>
+                {showAddUser&&<AddNewUser cb={setUsers} setShowAddUser={setShowAddUser}></AddNewUser>}
+            </div>
+
          </div>
          
        

@@ -1,12 +1,12 @@
 import { useState} from 'react'
 import { addData, URI_TODOS} from '../helpers/utilities'
-import uuid  from 'react-uuid'
-import Style from './Task.module.css';
+import { v4 as uuidv4 } from 'uuid';
+import Style from '../Todos&Posts/MergeTodosPosts.module.css';
 
 const NewTask = (props) => {
 
     const [data, setData] = useState({
-        id:uuid(),
+        id:uuidv4(),
         userId:props.currentUserId,
         title:"",
         completed: false
@@ -21,16 +21,15 @@ const NewTask = (props) => {
 
 
 
-    const handleSubmit= (e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault();
-        addData(URI_TODOS,data)
-        .then(data=>console.log(data));
+        await addData(URI_TODOS,data)
         props.cb(prev=>[...prev,data]);
         props.setShowForm(false);
     }
 
    
-    return <div className={Style.cardNewTask}>
+    return <div className={Style.cardAddNew} onClick={()=>props.setShowForm(false)}>
                 <div>
                 New Todo- User {props.currentUserId}
                 <form onSubmit={handleSubmit} className={Style.form} >
@@ -39,9 +38,9 @@ const NewTask = (props) => {
                 </label><br/>
                 <label>
                 Completed:
-                <select name="completed" onChange={e=>handleInputChange(e)}>
-                    <option  value={true}  >true</option>
-                    <option   value={false} >false</option>
+                <select name="completed"  onChange={e=>handleInputChange(e)}>
+                    <option value={true} >true</option>
+                    <option value={false} >false</option>
                  </select>
                  </label> 
                   <br/>
