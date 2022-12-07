@@ -14,7 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npx json-server --watch /data/db.js`
+### `npx json-server --watch /data/db.js --port 8000`
 
 Launches the data from json file on local server 
 
