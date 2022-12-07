@@ -8,7 +8,10 @@ const SearchBar = (props) => {
 
     return <div className={Style.container} >
              <input type="search"   onChange={handleQuery}/>
-             <button onClick={()=>props.cb(true)}>Add</button>
+             <button onClick={()=>{
+                props.cb(true)
+                props.setCurrentUserId(0)}
+                }>Add</button>
            </div>
 }
  

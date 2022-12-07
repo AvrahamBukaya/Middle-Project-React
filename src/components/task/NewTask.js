@@ -1,7 +1,7 @@
 import { useState} from 'react'
-import { addData, URI_TODOS} from '../helpers/utilities'
+import { addData, URI_TODOS} from '../../helpers/utilities'
 import { v4 as uuidv4 } from 'uuid';
-import Style from '../Todos&Posts/MergeTodosPosts.module.css';
+import Style from '../todosPosts/MergeTodosPosts.module.css';
 
 const NewTask = (props) => {
 

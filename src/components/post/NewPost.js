@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { addData, URI_POSTS } from '../helpers/utilities';
-import Style from '../Todos&Posts/MergeTodosPosts.module.css'
+import { addData, URI_POSTS } from '../../helpers/utilities';
+import Style from '../todosPosts/MergeTodosPosts.module.css'
 
 const NewPost = (props) => {
 

@@ -1,12 +1,13 @@
 import {memo, useState,useMemo} from 'react';
 import EncapsulatedUserdata from './EncapsulatedUserdata';
 import Style from './Layout.module.css';
-import { deleteUserById, patchData, URI_USERS } from '../helpers/utilities'
+import { deleteUserById, patchData, URI_USERS } from '../../helpers/utilities'
 
 const User = (props) => {
 
     const[dataIndetails, setDataInDetails] = useState(false);
     const[user, setUser] = useState(props.data);
+    const[focus,setFocus] = useState(false);
  
 
     const tasksNotCompleted = useMemo(()=>{
@@ -54,21 +55,26 @@ const User = (props) => {
         });
     }
 
+   const handleLabelClick = ()=>{
+     setFocus(!focus);
+     !focus?props.setCurrentUserId(user.id):props.setCurrentUserId(0);
+   }
+
  
 
     function renderUser(){
 
-        return <p className={`${Style.cardContainer} ${Style.card} ${tasksNotCompleted?Style.notCompleted:Style.completed}`}> 
-            <label onClick={()=>props.setCurrentUserId(user.id)}>ID:{user.id}</label>
-            <label>Name: <input type="text" defaultValue={user.name} name="name"  onChange={updateData}/></label>
-            <label>Email: <input type="email"  defaultValue={user.email}   name="email" onChange={updateData}/></label>
-            <div>
-            <button onClick={handleClick}>Other Data</button>
-            {dataIndetails&& <EncapsulatedUserdata address={user.address} updateData={updateData}></EncapsulatedUserdata>}
+        return <div className={`${Style.cardContainer} ${Style.card} ${focus&&Style.LabelClicked} ${tasksNotCompleted?Style.notCompleted:Style.completed}`}> 
+                 <label onClick={handleLabelClick}>ID:{user.id}</label>
+                 <label>Name: <input type="text" defaultValue={user.name} name="name"  onChange={updateData}/></label>
+                 <label>Email: <input type="email"  defaultValue={user.email}   name="email" onChange={updateData}/></label>
+                <div>
+                 <button onClick={handleClick}>Other Data</button>
+                  {dataIndetails&& <EncapsulatedUserdata address={user.address} updateData={updateData}></EncapsulatedUserdata>}
                 <button className={Style.curdBtn} onClick={handleupdate}>Update</button>
                 <button className={Style.curdBtn} onClick={handleDelete}>Delete</button>
-            </div> 
-        </p>
+                </div> 
+              </div>
 
     }
 

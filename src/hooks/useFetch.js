@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 
-import { getAll, URI_USERS, URI_POSTS,URI_TODOS } from '../components/helpers/utilities'
+import { getAll, URI_USERS, URI_POSTS,URI_TODOS } from '../helpers/utilities'
 
 export const useFetch = () => {
 

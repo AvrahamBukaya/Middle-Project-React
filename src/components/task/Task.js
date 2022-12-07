@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import Style from './Task.module.css'
-import { URI_TODOS, patchData } from '../helpers/utilities'
+import { URI_TODOS, patchData } from '../../helpers/utilities'
 
 const Task = (props) => {
 

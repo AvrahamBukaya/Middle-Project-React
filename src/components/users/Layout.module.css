@@ -36,6 +36,10 @@
 
 }
 
+.LabelClicked {
+    background-color: burlywood;
+}
+
 .addNewUser {
     position: relative;
     top: 0;
